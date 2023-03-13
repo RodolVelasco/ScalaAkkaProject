@@ -4,35 +4,6 @@ version := "0.1"
 
 scalaVersion := "2.13.8"
 
-/*lazy val akkaVersion = "2.6.20" // must be 2.5.13 so that it's compatible with the stores plugins (JDBC and Cassandra)
-//lazy val akkaVersion = "2.7.0" // must be 2.5.13 so that it's compatible with the stores plugins (JDBC and Cassandra)
-lazy val cassandraVersion = "1.0.6"
-lazy val json4sVersion = "3.2.11"
-lazy val protobufVersion = "3.6.1"
-lazy val logBackVersion = "1.2.10"
-
-// some libs are available in Bintray's JCenter
-resolvers += Resolver.jcenterRepo
-
-libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-persistence" % akkaVersion,
-  // Cassandra
-  "com.typesafe.akka" %% "akka-persistence-cassandra" % cassandraVersion,
-  "com.typesafe.akka" %% "akka-persistence-cassandra-launcher" % cassandraVersion % Test,
-
-  // Google Protocol Buffers
-  "com.google.protobuf" % "protobuf-java"  % protobufVersion,
-
-  //test
-  "com.typesafe.akka" %% "akka-persistence-query" % akkaVersion,
-  "com.typesafe.akka" %% "akka-cluster-sharding-typed" % akkaVersion,
-  "com.typesafe.akka" %% "akka-coordination" % akkaVersion,
-  "com.typesafe.akka" %% "akka-cluster-typed" % akkaVersion,
-  "com.typesafe.akka" %% "akka-cluster-tools" % akkaVersion,
-  "ch.qos.logback"    % "logback-classic" % logBackVersion,
-
-)*/
-
 val akkaVersion = "2.6.20"
 val akkaPersistenceCassandraVersion = "1.0.5"
 val akkaProjectionVersion = "1.2.4"
