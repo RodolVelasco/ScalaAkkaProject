@@ -33,6 +33,7 @@ project/boot/
 project/plugins/project/
 .history
 .cache
+.bkp
 .lib/
 config/
-
+src/main/scala/pocs

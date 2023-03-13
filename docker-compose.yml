@@ -1,0 +1,70 @@
+#version: "2.10.2" # 2.4 is the last version that supports depends_on conditions for service health
+networks:
+  cassandra:
+services:
+  jiraiya1:
+    image: cassandra:4.0.7
+    container_name: jiraiya_node1
+    hostname: jiraiya_node1
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+    networks:
+      - cassandra
+    ports:
+      - "9042:9042"
+    volumes:
+      - ./config/data/jiraiya1:/var/lib/cassandra
+      - ./config/etc/jiraiya1:/etc/cassandra
+    environment:
+      &environment
+      CASSANDRA_SEEDS: "jiraiya1,takamura2"
+      CASSANDRA_CLUSTER_NAME: SteamCluster
+      CASSANDRA_DC: MyLocal
+      CASSANDRA_RACK: Unique
+      CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+      CASSANDRA_NUM_TOKENS: 128
+      HEAP_NEWSIZE: 300M
+      MAX_HEAP_SIZE: 1G
+  takamura2:
+    image: cassandra:4.0.7
+    container_name: takamura_node2
+    hostname: takamura_node2
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+    networks:
+      - cassandra
+    ports:
+      - "9043:9042"
+    volumes:
+      - ./config/data/takamura2:/var/lib/cassandra
+      - ./config/etc/takamura2:/etc/cassandra
+    environment: *environment
+    depends_on:
+      jiraiya1:
+        condition: service_healthy
+  saitama3:
+    image: cassandra:4.0.7
+    container_name: saitama_node3
+    hostname: saitama_node3
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+    networks:
+      - cassandra
+    ports:
+      - "9044:9042"
+    volumes:
+      - ./config/data/saitama3:/var/lib/cassandra
+      - ./config/etc/saitama3:/etc/cassandra
+    environment: *environment
+    depends_on:
+      takamura2:
+        condition: service_healthy
