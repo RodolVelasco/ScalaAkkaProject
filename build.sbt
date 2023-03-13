@@ -35,11 +35,6 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-persistence-cassandra-launcher" % akkaPersistenceCassandraVersion % Test,
   "com.lightbend.akka" %% "akka-projection-cassandra" % akkaProjectionVersion,
 
-  // alpakka
-  "com.lightbend.akka" %% "akka-stream-alpakka-file" % "3.0.4",
-  "com.lightbend.akka" %% "akka-stream-alpakka-json-streaming" % "4.0.0",
-  "com.lightbend.akka" %% "akka-stream-alpakka-cassandra" % "4.0.0",
-
   // cluster sharding
   "com.typesafe.akka" %% "akka-cluster-sharding-typed" % akkaVersion,
   "com.typesafe.akka" %% "akka-coordination" % akkaVersion,
@@ -48,6 +43,8 @@ libraryDependencies ++= Seq(
 
   // logback
   "ch.qos.logback"    % "logback-classic" % logBackVersion,
+
+
 
   // google protocol buffers
   "com.google.protobuf" % "protobuf-java" % "3.21.5"
