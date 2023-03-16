@@ -36,4 +36,13 @@ project/plugins/project/
 .bkp
 .lib/
 config/
-src/main/scala/pocs
+
+### Ignored files from this project ###
+src/main/scala/com/steam/reviews/pocs
+src/main/resources/1gb/
+src/main/resources/2gb/
+src/main/resources/3gb/
+src/main/resources/4gb/
+src/main/resources/500mb/
+src/main/resources/steam_reviews_original.csv
+
