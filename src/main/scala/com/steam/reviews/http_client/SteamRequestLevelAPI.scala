@@ -26,13 +26,15 @@ object SteamRequestLevelAPI extends App with ReviewJsonProtocol {
       println(s"Request failed with: $ex")
   }
 
+  import com.steam.reviews.domain.SteamReviewSystemDomain._
+
   val reviews = List(
     Review(292030,"The Witcher 3: Wild Hunt",85185111,"schinese","巫师3NB"),
     Review(292030,"The Witcher 3: Wild Hunt",85184605,"english","One of the best RPG's of all time"),
     Review(292030,"The Witcher 3: Wild Hunt",85183602,"turkish","Bla bla bla")
   )
 
-  val reviewRequests = reviews.map(review => ReviewRequest(review, "review-bulk-procedure", reviews.length))
+  val reviewRequests = reviews.map(review => ReviewRequest(review, "review-bulk-procedure-rl", reviews.length))
   val serverHttpRequests = reviewRequests.map(reviewRequest =>
     HttpRequest(
       HttpMethods.POST,
@@ -45,6 +47,6 @@ object SteamRequestLevelAPI extends App with ReviewJsonProtocol {
   )
 
   Source(serverHttpRequests)
-    .mapAsync(10)(request => Http().singleRequest(request))
+    .mapAsyncUnordered(10)(request => Http().singleRequest(request))
     .runForeach(println)
 }
