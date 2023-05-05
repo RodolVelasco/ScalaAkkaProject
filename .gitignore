@@ -3,6 +3,7 @@
 ./idea_modules
 project/
 target/
+extras/
 
 *.iml
 
@@ -44,5 +45,6 @@ src/main/resources/2gb/
 src/main/resources/3gb/
 src/main/resources/4gb/
 src/main/resources/500mb/
-src/main/resources/steam_reviews_original.csv
-
+src/main/resources/*.csv
+src/main/resources/*.json
+src/main/resources/*.txt

@@ -8,18 +8,19 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>target/airbnb-dev.log</file>
+        <file>target/steam-review-dev.log</file>
         <encoder>
             <pattern>[%date{ISO8601}] [%level] [%logger] [%marker] [%thread] - %msg MDC: {%mdc}%n</pattern>
         </encoder>
     </appender>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>
 
     <logger name="akka" level="INFO"/>
-    <logger name="com.datastax.oss" level="WARN"/>
+    <logger name="com.datastax.oss" level="INFO"/>
+    <logger name="com.datastax.oss.driver.internal.core.pool.ChannelPool" level="ERROR"/>
 
 </configuration>
